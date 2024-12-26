@@ -1,4 +1,4 @@
-const apiKey = "6I68qznpymku2JULToPsKs4UfRQ5UdT8tKqTuVSYWcXP0l3NV94tnvUTJtUuoM97";
+const apiKey = import.meta.env.VITE_WP_KEY;
 const API_BASE = "https://admin.janvanerkel.nl/wp-json/wp/v2";
 
 /** Haalt de pagina's op uit de WordPress API */

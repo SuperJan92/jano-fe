@@ -1,0 +1,51 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { getPages } from "../lib/wp-api";
+
+// Haal de pagina's op voor de getStaticPaths functie
+export async function getStaticPaths() {
+        try {
+                const pages = await getPages(); // Haal de pagina's op uit WordPress
+                const paths = pages.map((page) => ({
+                        params: { slug: page.slug },  // Genereer paden op basis van de slug
+                }));
+                return paths;
+        } catch (e) {
+                console.error("Fout bij het ophalen van pagina's voor getStaticPaths:", e);
+                return [];
+        }
+}
+
+let pages = [];
+let page = null;
+let error = null;
+
+try {
+        // Haal de pagina's op uit de WordPress API
+        pages = await getPages();
+
+        // Haal de slug op uit de URL van de pagina
+        const { slug } = Astro.params;
+
+        // Zoek de pagina die overeenkomt met de slug
+        page = pages.find((p) => p.slug === slug);
+} catch (e) {
+        error = e.message;
+}
+---
+
+<Layout>
+        <h1 class="text-4xl text-blue-500">Test Tailwind</h1>
+        <div class="p-8">
+                {error ? (
+                    <p class="text-red-500">{error}</p>
+                ) : page ? (
+                    <div class="mt-4">
+                            <h1 class="text-blue-600 font-bold">{page.title.rendered}</h1>
+                            <div innerHTML={page.content.rendered} class="mt-4"></div>
+                    </div>
+                ) : (
+                    <p class="text-gray-500">Pagina niet gevonden</p>
+                )}
+        </div>
+</Layout>

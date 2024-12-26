@@ -1,7 +1,39 @@
 ---
-import '../styles/tailwind.css';
+import Welcome from "../components/Welcome.astro";
+import Layout from "../layouts/Layout.astro";
+import { getPages } from "../lib/wp-api";
+
+// Haal de pagina's op uit WordPress
+let pages = [];
+let homePage = null;
+let error = null;
+
+try {
+	pages = await getPages();
+	homePage = pages.find((p) => p.slug === 'home');  // Zorg ervoor dat de slug 'home' overeenkomt
+} catch (e) {
+	error = e.message;  // Foutmelding bij ophalen
+}
 ---
 
-<div class="bg-blue-500 text-white p-6">
-	<h1 class="text-4xl font-bold">Hello, Tailwind is working!</h1>
-</div>
+<html lang="nl">
+	<head>
+		<title>{homePage ? homePage.title.rendered : "Home"}</title>
+	</head>
+	<body class="bg-gray-100">
+		<Layout>
+			<main class="p-8">
+				{error ? (
+					<p class="text-red-500">{error}</p>  // Foutmelding bij ophalen
+            ) : homePage ? (
+					<div>
+						<h1 class="text-3xl text-center text-pink-500 font-bold">Zit je te gluren?</h1>
+						<div innerHTML={homePage.content.rendered} class="mt-4"></div>
+					</div>
+				) : (
+					<p class="text-gray-500">Home pagina niet gevonden</p>  // Als de homepage niet bestaat
+            )}
+			</main>
+		</Layout>
+	</body>
+</html>

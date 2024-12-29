@@ -1,0 +1,16 @@
+---
+const { about_title, about_text, about_image } = Astro.props;
+---
+<section class="about py-16">
+        <div class="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                <div>
+                        <h2 class="text-pink-500 text-3xl font-bold">{about_title}</h2>
+                        <p class="mt-4 text-gray-700">{about_text}</p>
+                </div>
+            {about_image && (
+                    <div>
+                            <img src={about_image} alt="About image" class="rounded shadow-md" />
+                    </div>
+            )}
+        </div>
+</section>

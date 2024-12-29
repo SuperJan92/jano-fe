@@ -1,0 +1,18 @@
+---
+const { small_title, title_first, title_second, text_block, button_text_, button_link } = Astro.props;
+---
+<section class="hero bg-cover bg-center py-16 text-center" style="background-image: url('/path/to/your/image.jpg')">
+        <div class="container mx-auto">
+                <h4 class="text-sm uppercase text-gray-500">{small_title}</h4>
+                <h1 class="text-4xl bg-amber-400">
+                    {title_first} <br />
+                    {title_second}
+                </h1>
+                <p class="mt-4 text-gray-700">{text_block}</p>
+            {button_text_ && button_link && (
+                    <a href={button_link} class="mt-6 inline-block bg-blue-500 text-white px-6 py-2 rounded">
+                        {button_text_}
+                    </a>
+            )}
+        </div>
+</section>

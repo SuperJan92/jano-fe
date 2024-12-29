@@ -1,129 +1,91 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import { getPages, getBlocks } from "../lib/wp-api"; // Importeer beide functies
+import Layout from "../layouts/Layout.astro";
+import BlockAbout from "../components/Block-about.astro";
+import BlockHero from "../components/Block-hero.astro";
+import { getPages, getBlocks } from "../lib/wp-api";
 
-// Haal de dynamische paden op voor de route
+// Stap 1: Definieer dynamische routes
 export async function getStaticPaths() {
         let pages = [];
         try {
-                pages = await getPages();  // Haal alle pagina's op van je API of database
+                // Haal alle pagina's op via de WordPress REST API
+                pages = await getPages();
         } catch (e) {
-                console.error('Fout bij het ophalen van de pagina\'s:', e);
+                console.error("Error fetching pages in getStaticPaths:", e);
         }
 
-        // Zorg ervoor dat 'pages' een array is
-        if (!Array.isArray(pages)) {
-                throw new Error("De opgehaalde data is geen array.");
-        }
-
-        // Retourneer de paden met de slug van elke pagina
-        return pages.map(page => ({
-                params: { slug: page.slug }
+        // Genereer een lijst met routes op basis van de slugs van de pagina's
+        return pages.map((page) => ({
+                params: { slug: page.slug },
         }));
 }
 
-// Haal de gegevens op voor een specifieke pagina op basis van de slug
-let pages = [];
+// Stap 2: Haal dynamische data op
 let page = null;
 let blocks = [];
 let error = null;
 
 try {
-        pages = await getPages();
+        const { slug } = Astro.params; // Haal de slug van de huidige URL
+        const pages = await getPages(); // Haal alle pagina's op
+        page = pages.find((p) => p.slug === slug); // Zoek de pagina met de juiste slug
 
-        const { slug } = Astro.params;
-
-        page = pages.find((p) => p.slug === slug);
-        if (!page) {
-                error = `Pagina met slug "${slug}" niet gevonden`;
-                console.error(error);
-                return;
+        if (page) {
+                blocks = await getBlocks(page.id); // Haal de blokken op voor de gevonden pagina
         }
-
-        blocks = await getBlocks(page.id);
 } catch (e) {
-        error = e.message;
-        console.error("Fout bij het ophalen van gegevens:", e);
+        error = e.message; // Bewaar foutmelding
+        console.error("Error fetching data in [slug].astro:", e);
 }
 ---
 
-<Layout>
-        <div class="p-8">
-                {error ? (
-                    <p class="text-red-500">{error}</p>
-                ) : page ? (
-                    <div>
-                            <h1 class="text-blue-600 font-bold">{page.title.rendered}</h1>
-                            <div class="mt-4" innerHTML={page.content.rendered || '<p>Geen inhoud beschikbaar</p>'}></div>
-
-                            <div class="mt-8">
-                                    <h2>Blokken:</h2>
-                                    {blocks.length > 0 ? (
-                                        blocks.map((block, index) => {
-                                                const blockData = block.attributes?.data || {};
-
-                                                // Check voor heroblock
-                            if (block.blockName === 'acf/heroblock') {
-                                                        return (
-                                                            <div key={index} class="block mt-4">
-                                                                    <div>
-                                                                            {blockData.small_title && (
-                                                                                <h3 class="text-xl font-bold">{blockData.small_title}</h3>
-                                                                            )}
-                                                                            {blockData.title_first && (
-                                                                                <h4 class="text-lg font-semibold">{blockData.title_first}</h4>
-                                                                            )}
-                                                                            {blockData.title_second && (
-                                                                                <h5 class="text-md font-medium">{blockData.title_second}</h5>
-                                                                            )}
-                                                                            {blockData.Text_block && (
-                                                                                <p class="text-gray-600">{blockData.Text_block}</p>
-                                                                            )}
-                                                                            {blockData.button_text_ && blockData.button_link && (
-                                                                                <a
-                                                                                    href={blockData.button_link}
-                                                                                    class="mt-4 inline-block px-6 py-2 bg-blue-500 text-white rounded-lg"
-                                                                                >
-                                                                                        {blockData.button_text_}
-                                                                                </a>
-                                                                            )}
-                                                                    </div>
-                                                            </div>
-                                                        );
-                                                }
-
-                                                // Check voor aboutblock
-                            if (block.blockName === 'acf/aboutblock') {
-                                                        return (
-                                                            <div key={index} class="block mt-4">
-                                                                    <div>
-                                                                            {blockData.about_title && (
-                                                                                <h3 class="text-xl font-bold">{blockData.about_title}</h3>
-                                                                            )}
-                                                                            {blockData.about_text && (
-                                                                                <p class="text-lg text-gray-700">{blockData.about_text}</p>
-                                                                            )}
-                                                                            {blockData.about_image && (
-                                                                                <img
-                                                                                    src={blockData.about_image.url}
-                                                                                    alt={blockData.about_image.alt || "About Image"}
-                                                                                    class="mt-4 w-full h-auto"
-                                                                                />
-                                                                            )}
-                                                                    </div>
-                                                            </div>
-                                                        );
-                                                }
-
-                                                return null; // Zorg ervoor dat we altijd iets teruggeven, zelfs als het blok onbekend is
-                        })
-                                    ) : (
-                                        <p class="text-gray-500">Geen blokken gevonden</p>
-                                    )}
-                            </div>
-                    </div>
-                ) : (
-                    <p class="text-gray-500">Pagina niet gevonden</p>
-                )}
-        </div>
-</Layout>
+<html lang="nl">
+<head>
+        <title>{page ? page.title.rendered : "Pagina niet gevonden"}</title>
+                </head>
+                <body class="bg-gray-100">
+                <Layout>
+                        <main class="p-8">
+                                {error ? (
+                                    // Toon foutmelding indien API faalt
+                <p class="text-red-500">Er ging iets mis: {error}</p>
+                                ) : page ? (
+                                    <div>
+                                            <h1 class="text-3xl font-bold text-center">{page.title.rendered}</h1>
+                                            <div class="mt-8">
+                                                    {blocks.length > 0 ? (
+                                                        blocks.map((block, index) => {
+                                                                // Render dynamisch blokken op basis van blockName
+                                switch (block.blockName) {
+                                                                        case "acf/heroblock":
+                                                                                return (
+                                                                                    <BlockHero
+                                                                                        key={`block-${index}`}
+                                                                                        {...block.attributes.data}
+                                                                                    />
+                                                                                );
+                                                                        case "acf/aboutblock":
+                                                                                return (
+                                                                                    <BlockAbout
+                                                                                        key={`block-${index}`}
+                                                                                        {...block.attributes.data}
+                                                                                    />
+                                                                                );
+                                                                        default:
+                                                                                console.warn("Onbekend blok:", block.blockName);
+                                                                                return null;
+                                                                }
+                                                        })
+                                                    ) : (
+                                                        <p class="text-gray-500">Geen blokken gevonden.</p>
+                                                    )}
+                                            </div>
+                                    </div>
+                                ) : (
+                                    // Toon als de pagina niet gevonden is
+                <p class="text-gray-500">Pagina niet gevonden</p>
+                                )}
+                        </main>
+                </Layout>
+                </body>
+                </html>

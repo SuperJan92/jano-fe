@@ -1,18 +1,30 @@
 ---
-import Welcome from "../components/Welcome.astro";
 import Layout from "../layouts/Layout.astro";
-import { getPages } from "../lib/wp-api";
+import BlockAbout from "../components/Block-about.astro";
+import BlockHero from "../components/Block-hero.astro";
+import { getPages, getBlocks } from "../lib/wp-api";
 
-// Haal de pagina's op uit WordPress
-let pages = [];
+// Variabelen voor data-opslag
 let homePage = null;
+let blocks = [];
 let error = null;
 
 try {
-	pages = await getPages();
-	homePage = pages.find((p) => p.slug === 'home');  // Zorg ervoor dat de slug 'home' overeenkomt
+	// Haal alle pagina's op
+	const pages = await getPages();
+
+	// Zoek de pagina met de slug 'home'
+	homePage = pages.find((p) => p.slug === "home");
+
+	// Haal de blokken op voor de homepagina
+	if (homePage) {
+		blocks = await getBlocks(homePage.id);
+	} else {
+		console.warn("Homepagina niet gevonden. Controleer de slug 'home'.");
+	}
 } catch (e) {
-	error = e.message;  // Foutmelding bij ophalen
+	error = e.message; // Bewaar foutmelding
+	console.error("Error fetching data in index.astro:", e);
 }
 ---
 
@@ -21,19 +33,48 @@ try {
 		<title>{homePage ? homePage.title.rendered : "Home"}</title>
 	</head>
 	<body class="bg-gray-100">
-		<Layout>
-			<main class="p-8">
-				{error ? (
-					<p class="text-red-500">{error}</p>  // Foutmelding bij ophalen
-            ) : homePage ? (
-					<div>
-						<h1 class="text-3xl text-center text-pink-500 font-bold">Zit je te gluren?</h1>
-						<div innerHTML={homePage.content.rendered} class="mt-4"></div>
-					</div>
-				) : (
-					<p class="text-gray-500">Home pagina niet gevonden</p>  // Als de homepage niet bestaat
-            )}
-			</main>
-		</Layout>
+			<Layout>
+				<main>
+					{/* Toon foutmeldingen indien aanwezig */}
+					{error ? (
+						<p class="text-red-500">{error}</p>
+					) : homePage ? (
+						<div>
+							<h1 class="text-3xl font-bold text-center">{homePage.title.rendered}</h1>
+							<div class="mt-8">
+								{/* Render dynamisch de blokken */}
+								{blocks.length > 0 ? (
+									blocks.map((block, index) => {
+										console.log(`Rendering block ${index + 1}:`, block); // Debugging
+									switch (block.blockName) {
+											case "acf/heroblock":
+												return (
+													<BlockHero
+														key={`hero-block-${index}`}
+														{...block.attributes.data}
+													/>
+												);
+											case "acf/aboutblock":
+												return (
+													<BlockAbout
+														key={`about-block-${index}`}
+														{...block.attributes.data}
+													/>
+												);
+											default:
+												console.warn("Onbekend blok:", block.blockName);
+												return null; // Onbekend bloktype overslaan
+									}
+									})
+								) : (
+									<p class="text-gray-500">Geen blokken gevonden voor de homepagina</p>
+								)}
+							</div>
+						</div>
+					) : (
+						<p class="text-gray-500">Homepagina niet gevonden</p>
+					)}
+				</main>
+			</Layout>
 	</body>
 </html>

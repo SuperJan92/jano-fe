@@ -1,10 +1,18 @@
 /* header.css */
 .header {
-  @apply bg-custom-bg text-white absolute w-full; /* Achtergrondkleur en tekstkleur */
+  @apply bg-[#101418] text-white md:bg-transparent md:mx-0 mx-4 mt-4 rounded-full; /* Achtergrondkleur en marges op mobiel */
 }
 
 .header__container {
-  @apply flex justify-between items-center px-6 py-4 max-w-screen-xl mx-auto; /* Padding links en rechts 25px (px-6) en verticale padding (py-4) */
+  @apply mx-auto flex max-w-[1280px] items-center justify-between px-[6px] py-[4px] md:px-[30px]; /* Margin auto, flex, max-width, align-items, justify-content, padding */
+}
+
+.hamburger {
+  @apply md:hidden block pb-[5px] pt-[11px]; /* Zichtbaar op mobiel */
+}
+
+.header__nav {
+  @apply md:block hidden; /* Alleen zichtbaar op desktop */
 }
 
 .header__logo {
@@ -50,4 +58,12 @@
 
 .hamburger-inner, .hamburger-inner::before, .hamburger-inner::after {
   background-color: #ff9d20 !important;
+}
+
+.hamburger {
+  @apply md:hidden block;
+}
+
+.header__nav{
+  @apply md:block hidden;
 }

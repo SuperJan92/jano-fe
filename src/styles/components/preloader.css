@@ -19,7 +19,7 @@
   animation: 2s forwards overlayGone;
   opacity:1;
   animation-delay: 2.8s;
-
+  pointer-events: none;
 }
 
 @keyframes overlayGone {

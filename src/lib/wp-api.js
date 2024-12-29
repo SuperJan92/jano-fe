@@ -1,4 +1,4 @@
-const apiKey = import.meta.env.VITE_WP_KEY;
+const apiKey = "6I68qznpymku2JULToPsKs4UfRQ5UdT8tKqTuVSYWcXP0l3NV94tnvUTJtUuoM97";
 const API_BASE = "https://admin.janvanerkel.nl/wp-json/wp/v2";
 const CUSTOM_API_BASE = "https://admin.janvanerkel.nl/wp-json/custom/v1";
 

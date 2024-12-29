@@ -1,6 +1,7 @@
 ---
 import '../styles/tailwind.css';
 import Header from '../components/Header.astro';
+import Preloader from '../components/Preloader.astro'; // Import preloader component
 ---
 
 <!doctype html>
@@ -13,10 +14,12 @@ import Header from '../components/Header.astro';
 	<title>Astro Basics</title>
 </head>
 <body class="bg-custom-bg text-white">
+<Preloader />
 <Header />
 <main>
 	<slot />
 </main>
+
 </body>
 </html>
 

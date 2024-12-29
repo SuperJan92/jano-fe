@@ -1,6 +1,7 @@
 @import './fonts.css';
 @import './components/hero.css';
 @import './components/header.css';
+@import './components/preloader.css';
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

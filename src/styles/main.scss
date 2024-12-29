@@ -1,2 +1,6 @@
 @use './hamburgers-settings' as *;
 @use '../../node_modules/hamburgers/_sass/hamburgers/hamburgers' as *;
+
+body {
+  background-color: red !important;
+}

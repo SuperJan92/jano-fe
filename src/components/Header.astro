@@ -1,15 +1,19 @@
 ---
-// Header component
-const menuItems = [
-        { name: "Home", href: "/" },
-        { name: "About", href: "/about" },
-        { name: "Contact", href: "/contact" },
-];
+import { getMenu } from '../lib/menu-api'; // Importeer de getMenu functie
+
+const menuId = 2; // Het ID van het menu dat je wilt ophalen
+let menuItems = [];
+
+try {
+        menuItems = await getMenu(menuId); // Haal het menu op
+        console.log("Menu items:", menuItems);
+} catch (error) {
+        console.error("Error fetching menu:", error);
+}
 ---
 
 <header class="header">
         <div class="header__container">
-                {/* Logo */}
                 <a href="/" class="header__logo">
                         <svg height="50" width="50" xmlns="http://www.w3.org/2000/svg">
                                 <circle r="20" cx="25" cy="25" fill="transparent" stroke="#ff9d20" stroke-width="3"></circle>
@@ -20,13 +24,17 @@ const menuItems = [
                 {/* Menu */}
                 <nav class="header__nav">
                         <ul class="header__menu">
-                                {menuItems.map((item) => (
-                                    <li class="header__menu-item" key={item.name}>
-                                            <a href={item.href} class="header__menu-link">
-                                                    {item.name}
-                                            </a>
-                                    </li>
-                                ))}
+                                {menuItems.length > 0 ? (
+                                    menuItems.map((item) => (
+                                        <li class="header__menu-item" key={item.id}>
+                                                <a href={item.url} class="header__menu-link">
+                                                        {item.title}
+                                                </a>
+                                        </li>
+                                    ))
+                                ) : (
+                                    <p>Menu niet gevonden.</p>
+                                )}
                         </ul>
                 </nav>
         </div>

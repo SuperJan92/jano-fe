@@ -1,17 +1,17 @@
 .hero {
-  @apply h-screen w-full flex items-center justify-center bg-cover bg-center py-16;
+  @apply h-screen w-full flex items-center justify-center bg-cover bg-center py-16 pt-20; /* Voeg padding-top toe om de header te compenseren */
 }
 
 .hero__container {
-  @apply text-left flex flex-col; /* Zorg ervoor dat de container flex-items verticaal stapelt */
+  @apply text-left flex flex-col gap-2 min-h-screen justify-center px-[29px]; /* Voeg 29px padding toe voor mobiel */
 }
 
 .hero__small-title {
-  @apply text-custom-orange text-sm font-light mb-3 text-left;
+  @apply text-custom-orange text-sm font-light text-left;
 }
 
 .hero__title {
-  @apply text-6xl font-semibold text-custom-gray text-left;
+  @apply text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-semibold text-custom-gray text-left;
 }
 
 .hero__title--main {
@@ -19,13 +19,13 @@
 }
 
 .hero__title--sub {
-  @apply text-custom-darkgray mb-2 text-left;
+  @apply text-custom-darkgray text-left;
 }
 
 .hero__text {
-  @apply text-custom-lightgray max-w-[500px] font-opensans text-left mb-6; /* Voeg marge onder de tekst toe */
+  @apply text-custom-lightgray max-w-[500px] font-opensans text-left mt-5 mb-6; /* Margin-top 20px en margin-bottom 25px */
 }
 
 .hero__button {
-  @apply text-custom-orange border border-custom-orange rounded-full py-3 px-8 text-xs self-start; /* self-start zorgt ervoor dat de knop niet uitrekt */
+  @apply text-custom-orange border border-custom-orange rounded-full py-3 px-8 text-xs self-start;
 }

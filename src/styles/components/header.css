@@ -1,0 +1,32 @@
+/* header.css */
+.header {
+  @apply bg-custom-bg text-white absolute w-full; /* Achtergrondkleur en tekstkleur */
+}
+
+.header__container {
+  @apply flex justify-between items-center px-6 py-4 max-w-screen-xl mx-auto; /* Padding links en rechts 25px (px-6) en verticale padding (py-4) */
+}
+
+.header__logo {
+  @apply flex items-center; /* Flexbox voor logo uitlijning */
+}
+
+.header__logo-text {
+  @apply font-goldplay text-custom-orange text-2xl; /* Goldplay font en de tekstkleur */
+}
+
+.header__nav {
+  @apply flex items-center; /* Flexbox voor nav-items */
+}
+
+.header__menu {
+  @apply flex space-x-6; /* Flexbox voor horizontale lijst met items */
+}
+
+.header__menu-item {
+  @apply list-none; /* Verwijder standaard lijststijl */
+}
+
+.header__menu-link {
+  @apply text-white hover:text-gray-300 transition; /* Witte tekst en hover-effect */
+}

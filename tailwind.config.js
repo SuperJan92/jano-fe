@@ -10,7 +10,7 @@ export default {
       colors: {
         'custom-orange': '#ff9d20',
         'custom-gray': '#bdbfc3',
-        'custom-darkgray': '#3a3f47',
+        'custom-darkgray': '#595e65',
         'custom-lightgray': '#a1a1a1',
         'custom-bg': '#141a23',
       },

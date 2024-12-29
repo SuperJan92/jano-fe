@@ -20,7 +20,8 @@
 }
 
 .header__menu {
-  @apply flex space-x-6; /* Flexbox voor horizontale lijst met items */
+  @apply flex space-x-8; /* Flexbox voor horizontale lijst met items, vergroot ruimte tussen items */
+  counter-reset: item; /* Reset de counter voor de lijst */
 }
 
 .header__menu-item {
@@ -28,5 +29,21 @@
 }
 
 .header__menu-link {
-  @apply text-white hover:text-gray-300 transition; /* Witte tekst en hover-effect */
+  @apply text-white hover:text-custom-orange transition;
+}
+
+/* Voeg nummering toe aan lijstitems */
+.header__menu li {
+  @apply text-custom-orange; /* Gebruik de Tailwind kleur */
+  list-style: none; /* Verwijder standaard lijststijl */
+}
+
+.header__menu li::before {
+  content: counter(item, decimal-leading-zero) ". "; /* Voeg de genummerde lijst toe */
+  @apply text-sm mr-[2px] text-custom-orange font-bold; /* Gebruik Tailwind voor margin-right, kleur en font-weight */
+  counter-increment: item; /* Verhoog de counter per lijstitem */
+}
+
+.header__menu-link {
+  @apply text-sm mt-5 mb-6 max-w-[500px] text-left font-opensans text-[rgb(161,161,161)] opacity-100;
 }

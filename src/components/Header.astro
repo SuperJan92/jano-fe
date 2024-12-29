@@ -23,7 +23,7 @@ try {
 
                 {/* Menu */}
                 <nav class="header__nav">
-                        <ul class="header__menu">
+                        <ol class="header__menu">
                                 {menuItems.length > 0 ? (
                                     menuItems.map((item) => (
                                         <li class="header__menu-item" key={item.id}>
@@ -35,7 +35,7 @@ try {
                                 ) : (
                                     <p>Menu niet gevonden.</p>
                                 )}
-                        </ul>
+                        </ol>
                 </nav>
         </div>
 </header>

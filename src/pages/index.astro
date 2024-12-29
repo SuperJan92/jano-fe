@@ -28,52 +28,45 @@ try {
 }
 ---
 
-<html lang="nl">
-	<head>
-		<title>{homePage ? homePage.title.rendered : "Home"}</title>
-	</head>
-	<body class="bg-gray-100">
-			<Layout>
-				<main>
-					{/* Toon foutmeldingen indien aanwezig */}
-					{error ? (
-						<p class="text-red-500">{error}</p>
-					) : homePage ? (
-						<div>
-							<div class="mt-8">
-								{/* Render dynamisch de blokken */}
-								{blocks.length > 0 ? (
-									blocks.map((block, index) => {
-										console.log(`Rendering block ${index + 1}:`, block); // Debugging
-									switch (block.blockName) {
-											case "acf/heroblock":
-												return (
-													<BlockHero
-														key={`hero-block-${index}`}
-														{...block.attributes.data}
-													/>
-												);
-											case "acf/aboutblock":
-												return (
-													<BlockAbout
-														key={`about-block-${index}`}
-														{...block.attributes.data}
-													/>
-												);
-											default:
-												console.warn("Onbekend blok:", block.blockName);
-												return null; // Onbekend bloktype overslaan
-									}
-									})
-								) : (
-									<p class="text-gray-500">Geen blokken gevonden voor de homepagina</p>
-								)}
-							</div>
-						</div>
+<Layout>
+	<main>
+		{/* Toon foutmeldingen indien aanwezig */}
+		{error ? (
+			<p class="text-red-500">{error}</p>
+		) : homePage ? (
+			<div>
+				<div>
+					{/* Render dynamisch de blokken */}
+					{blocks.length > 0 ? (
+						blocks.map((block, index) => {
+							console.log(`Rendering block ${index + 1}:`, block); // Debugging
+							switch (block.blockName) {
+								case "acf/heroblock":
+									return (
+										<BlockHero
+											key={`hero-block-${index}`}
+											{...block.attributes.data}
+										/>
+									);
+								case "acf/aboutblock":
+									return (
+										<BlockAbout
+											key={`about-block-${index}`}
+											{...block.attributes.data}
+										/>
+									);
+								default:
+									console.warn("Onbekend blok:", block.blockName);
+									return null; // Onbekend bloktype overslaan
+							}
+						})
 					) : (
-						<p class="text-gray-500">Homepagina niet gevonden</p>
+						<p class="text-gray-500">Geen blokken gevonden voor de homepagina</p>
 					)}
-				</main>
-			</Layout>
-	</body>
-</html>
+				</div>
+			</div>
+		) : (
+			<p class="text-gray-500">Homepagina niet gevonden</p>
+		)}
+	</main>
+</Layout>

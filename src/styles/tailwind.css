@@ -1,3 +1,17 @@
+@import './fonts.css';
+@import './components/hero.css';
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Globale instellingen */
+@layer base {
+    h1, h2, h3, h4, h5, h6 {
+        @apply font-goldplay;
+    }
+
+    body, p, span, li, a {
+        @apply font-opensans;
+    }
+}
+

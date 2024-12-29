@@ -1,0 +1,31 @@
+.hero {
+  @apply h-screen w-full flex items-center justify-center bg-cover bg-center py-16;
+}
+
+.hero__container {
+  @apply text-left flex flex-col; /* Zorg ervoor dat de container flex-items verticaal stapelt */
+}
+
+.hero__small-title {
+  @apply text-custom-orange text-sm font-light mb-3 text-left;
+}
+
+.hero__title {
+  @apply text-6xl font-semibold text-custom-gray text-left;
+}
+
+.hero__title--main {
+  @apply text-custom-gray leading-none text-left;
+}
+
+.hero__title--sub {
+  @apply text-custom-darkgray mb-2 text-left;
+}
+
+.hero__text {
+  @apply text-custom-lightgray max-w-[500px] font-opensans text-left mb-6; /* Voeg marge onder de tekst toe */
+}
+
+.hero__button {
+  @apply text-custom-orange border border-custom-orange rounded-full py-3 px-8 text-xs self-start; /* self-start zorgt ervoor dat de knop niet uitrekt */
+}

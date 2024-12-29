@@ -1,14 +1,11 @@
 ---
 import { getMenu } from '../lib/menu-api'; // Importeer de getMenu functie
-
 const menuId = 2; // Het ID van het menu dat je wilt ophalen
 let menuItems = [];
 
 try {
         menuItems = await getMenu(menuId); // Haal het menu op
-        console.log("Menu items:", menuItems);
 } catch (error) {
-        console.error("Error fetching menu:", error);
 }
 ---
 
@@ -21,9 +18,14 @@ try {
                         </svg>
                 </a>
 
-                {/* Menu */}
+                <button class="hamburger hamburger--vortex" type="button">
+                    <span class="hamburger-box">
+                            <span class="hamburger-inner"></span>
+                    </span>
+                </button>
+
                 <nav class="header__nav">
-                        <ol class="header__menu">
+                        <ol id="nav-menu" class="header__menu">
                                 {menuItems.length > 0 ? (
                                     menuItems.map((item) => (
                                         <li class="header__menu-item" key={item.id}>

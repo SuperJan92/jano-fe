@@ -47,3 +47,7 @@
 .header__menu-link {
   @apply text-sm mt-5 mb-6 max-w-[500px] text-left font-opensans text-[rgb(161,161,161)] opacity-100;
 }
+
+.hamburger-inner, .hamburger-inner::before, .hamburger-inner::after {
+  background-color: #ff9d20 !important;
+}

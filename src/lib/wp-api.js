@@ -18,10 +18,8 @@ export async function getPages() {
 
         // Wacht op de JSON-antwoord
         const data = await response.json();
-        console.log("API respons voor pagina's:", data); // Log de respons voor debugging
         return data;
     } catch (e) {
-        console.error(`Fout bij de fetch-aanroep voor pagina's: ${e.message}`);
         throw e;
     }
 }
@@ -42,10 +40,8 @@ export async function getBlocks(pageId) {
 
         // Parse de response als JSON
         const data = await response.json();
-        console.log("API respons voor blokken:", data);
         return data;
     } catch (e) {
-        console.error(`Fout bij de fetch-aanroep voor blokken: ${e.message}`);
         throw e;
     }
 }

@@ -16,10 +16,8 @@ export async function getMenu(menuId) {
 
         // Wacht op de JSON-antwoord
         const data = await response.json();
-        console.log("API respons voor menu-items:", data); // Log de respons voor debugging
         return data;
     } catch (e) {
-        console.error(`Fout bij de fetch-aanroep voor menu-items: ${e.message}`);
         throw e;
     }
 }

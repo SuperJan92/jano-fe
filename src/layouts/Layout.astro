@@ -19,10 +19,7 @@ import Preloader from '../components/Preloader.astro'; // Import preloader compo
 <main>
 	<slot />
 </main>
-
-<script client:only type="module">
-	import '../src/js/hamburger.js';
-</script>
+<script type="module" src="/js/hamburger.js"></script>
 </body>
 </html>
 

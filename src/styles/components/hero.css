@@ -1,9 +1,13 @@
+html, body {
+  @apply m-0 p-0 overflow-x-hidden; /* Verwijder marges en horizontaal scrollen */
+}
+
 .hero {
-  @apply h-screen w-full flex items-center justify-center bg-cover bg-center py-16 pt-20;
+  @apply h-[calc(100vh-80px)] w-full flex items-center justify-center bg-cover bg-center overflow-hidden;
 }
 
 .hero__container {
-  @apply text-left flex flex-col gap-2 min-h-screen justify-center px-[29px];
+  @apply text-left flex flex-col gap-2 justify-center px-[29px] h-full;
 }
 
 .hero__small-title {

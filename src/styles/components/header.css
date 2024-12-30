@@ -1,15 +1,15 @@
 /* header.css */
 .header {
-  @apply absolute left-[20px] right-[20px] top-4 mx-auto rounded-[30px] md:bg-transparent bg-[#101418] text-white;
+  @apply absolute left-[20px] right-[20px] top-4 mx-auto md:bg-transparent text-white;
 }
 
 /* Header container */
 .header__container {
-  @apply max-h-[60px] overflow-hidden mx-auto flex flex-col max-w-[1280px] px-[6px] py-[4px] gap-2.5 md:flex-row md:justify-between md:items-center duration-500 ease-in-out; /* Standaard op kleinere schermen: verticale layout */
+  @apply max-h-[68px] md:bg-transparent bg-[#101418] rounded-[35px] overflow-hidden mx-auto flex flex-col max-w-[1280px] p-[10px] gap-2.5 md:flex-row md:justify-between md:items-center duration-500 ease-in-out;
 }
 
 .header__container.is-open {
-  @apply max-h-[230px];
+  @apply max-h-[230px] rounded-t-[35px] rounded-b-[5px];
 }
 
 .header__top {
@@ -68,7 +68,7 @@ ol#nav-menu{
 }
 
 li.header__menu-item a {
-  @apply flex items-center mb-[6px] w-full rounded-none md:bg-transparent bg-[#1F2836] p-[11px] px-[18px] max-w-[unset]; /* Styling met Tailwind */
+  @apply flex items-center mb-[5px] w-full rounded-[5px] md:rounded-none md:bg-transparent bg-[#1F2836] p-[11px] px-[18px] max-w-[unset]; /* Styling met Tailwind */
 }
 
 li.header__menu-item a::before {
@@ -79,10 +79,6 @@ li.header__menu-item a::before {
   display: inline-block; /* Zorg dat het naast de tekst staat */
 }
 
-ol#nav-menu li:last-child a {
-  @apply rounded-b-[25px] mb-[3px] md:rounded-b-[0px] md:mb-[0px];
-}
-
-ol#nav-menu li:first-child a {
-  @apply rounded-t-[7px] md:rounded-t-[0px];
+nav.header__nav li:last-child a {
+  @apply mb-[0px];
 }

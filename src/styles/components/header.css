@@ -16,7 +16,7 @@ main{
 }
 
 .header__container.is-open {
-  @apply max-h-[230px] rounded-t-[35px] rounded-b-[5px];
+  @apply max-h-[270px] rounded-[35px];
 }
 
 .header__top {
@@ -36,7 +36,7 @@ main{
 }
 
 .header__nav {
-  @apply flex items-center; /* Flexbox voor nav-items */
+  @apply flex items-center pt-2 pb-7; /* Flexbox voor nav-items */
 }
 
 .header__menu {
@@ -75,7 +75,7 @@ ol#nav-menu{
 }
 
 li.header__menu-item a {
-  @apply flex items-center mb-[5px] w-full rounded-[5px] md:rounded-none md:bg-transparent bg-[#1F2836] p-[11px] px-[18px] max-w-[unset]; /* Styling met Tailwind */
+  @apply flex items-center mb-[5px] w-full rounded-[5px] md:rounded-none md:bg-transparent bg-[#181C22] p-[11px] px-[18px] max-w-[unset]; /* Styling met Tailwind */
 }
 
 li.header__menu-item a::before {

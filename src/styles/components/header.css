@@ -1,18 +1,23 @@
 /* header.css */
 .header {
-  @apply bg-[#101418] text-white md:bg-transparent md:mx-0 mx-4 mt-4 rounded-full; /* Achtergrondkleur en marges op mobiel */
+  @apply absolute left-[20px] right-[20px] top-4 mx-auto rounded-[30px] md:bg-transparent bg-[#101418] text-white;
 }
 
+/* Header container */
 .header__container {
-  @apply mx-auto flex max-w-[1280px] items-center justify-between px-[6px] py-[4px] md:px-[30px]; /* Margin auto, flex, max-width, align-items, justify-content, padding */
+  @apply max-h-[60px] overflow-hidden mx-auto flex flex-col max-w-[1280px] px-[6px] py-[4px] gap-2.5 md:flex-row md:justify-between md:items-center duration-500 ease-in-out; /* Standaard op kleinere schermen: verticale layout */
+}
+
+.header__container.is-open {
+  @apply max-h-[230px];
+}
+
+.header__top {
+  @apply md:block md:items-center flex justify-between;
 }
 
 .hamburger {
   @apply md:hidden block pb-[5px] pt-[11px]; /* Zichtbaar op mobiel */
-}
-
-.header__nav {
-  @apply md:block hidden; /* Alleen zichtbaar op desktop */
 }
 
 .header__logo {
@@ -28,16 +33,12 @@
 }
 
 .header__menu {
-  @apply flex space-x-8; /* Flexbox voor horizontale lijst met items, vergroot ruimte tussen items */
+  @apply md:flex block md:space-x-8; /* Flexbox voor horizontale lijst met items, vergroot ruimte tussen items */
   counter-reset: item; /* Reset de counter voor de lijst */
 }
 
 .header__menu-item {
   @apply list-none; /* Verwijder standaard lijststijl */
-}
-
-.header__menu-link {
-  @apply text-white hover:text-custom-orange transition;
 }
 
 /* Voeg nummering toe aan lijstitems */
@@ -46,14 +47,8 @@
   list-style: none; /* Verwijder standaard lijststijl */
 }
 
-.header__menu li::before {
-  content: counter(item, decimal-leading-zero) ". "; /* Voeg de genummerde lijst toe */
-  @apply text-sm mr-[2px] text-custom-orange font-bold; /* Gebruik Tailwind voor margin-right, kleur en font-weight */
-  counter-increment: item; /* Verhoog de counter per lijstitem */
-}
-
 .header__menu-link {
-  @apply text-sm mt-5 mb-6 max-w-[500px] text-left font-opensans text-[rgb(161,161,161)] opacity-100;
+  @apply text-sm mb-6 max-w-[500px] text-left font-opensans text-[rgb(161,161,161)] opacity-100 text-white hover:text-custom-orange transition;
 }
 
 .hamburger-inner, .hamburger-inner::before, .hamburger-inner::after {
@@ -64,6 +59,30 @@
   @apply md:hidden block;
 }
 
-.header__nav{
-  @apply md:block hidden;
+.header__nav {
+  @apply md:block; /* Alleen zichtbaar op desktop */
+}
+
+ol#nav-menu{
+  @apply w-full;
+}
+
+li.header__menu-item a {
+  @apply flex items-center mb-[5px] w-full rounded-none md:bg-transparent bg-[#1F2836] p-[10px]; /* Styling met Tailwind */
+}
+
+li.header__menu-item a::before {
+  content: counter(item, decimal-leading-zero) ". "; /* Genummerde lijst */
+  margin-right: 5px; /* Gebruik Tailwind's margewaarde */
+  @apply text-sm font-bold text-[#ff9d20]; /* Styling voor tekst */
+  counter-increment: item; /* Teller verhogen */
+  display: inline-block; /* Zorg dat het naast de tekst staat */
+}
+
+ol#nav-menu li:last-child a {
+  @apply rounded-b-[25px] mb-[2px] md:rounded-b-[0px] md:mb-[0px];
+}
+
+ol#nav-menu li:first-child a {
+  @apply rounded-t-[7px] md:rounded-t-[0px];
 }

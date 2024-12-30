@@ -11,27 +11,41 @@ try {
 
 <header class="header">
         <div class="header__container">
-                <a href="/" class="header__logo">
-                        <svg height="50" width="50" xmlns="http://www.w3.org/2000/svg">
-                                <circle r="20" cx="25" cy="25" fill="transparent" stroke="#ff9d20" stroke-width="3"></circle>
-                                <text x="50%" y="52%" text-anchor="middle" class="header__logo-text" fill="#ff9d20" stroke-width="2px" dy=".3em" style="font-size:28px;">J</text>
-                        </svg>
-                </a>
+                <!-- Logo en Hamburger in een aparte flex-container -->
+                <div class="header__top">
+                        <a href="/" class="header__logo">
+                                <svg height="50" width="50" xmlns="http://www.w3.org/2000/svg">
+                                        <circle r="20" cx="25" cy="25" fill="transparent" stroke="#ff9d20" stroke-width="3"></circle>
+                                        <text
+                                            x="50%"
+                                            y="52%"
+                                            text-anchor="middle"
+                                            class="header__logo-text"
+                                            fill="#ff9d20"
+                                            stroke-width="2px"
+                                            dy=".3em"
+                                            style="font-size: 28px;"
+                                        >
+                                                J
+                                        </text>
+                                </svg>
+                        </a>
 
-                <button class="hamburger hamburger--vortex" type="button">
-                    <span class="hamburger-box">
-                            <span class="hamburger-inner"></span>
-                    </span>
-                </button>
+                        <button class="hamburger hamburger--vortex" type="button">
+        <span class="hamburger-box">
+          <span class="hamburger-inner"></span>
+        </span>
+                        </button>
+                </div>
 
+                <!-- Navigatie onder de header__top -->
                 <nav class="header__nav">
                         <ol id="nav-menu" class="header__menu">
+                                <!-- Dynamisch menu -->
                                 {menuItems.length > 0 ? (
                                     menuItems.map((item) => (
                                         <li class="header__menu-item" key={item.id}>
-                                                <a href={item.url} class="header__menu-link">
-                                                        {item.title}
-                                                </a>
+                                                <a href={item.url} class="header__menu-link">{item.title}</a>
                                         </li>
                                     ))
                                 ) : (

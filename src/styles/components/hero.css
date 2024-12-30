@@ -3,7 +3,7 @@ html, body {
 }
 
 .hero {
-  @apply h-[calc(100vh-80px)] w-full flex items-center justify-center bg-cover bg-center overflow-hidden;
+  @apply h-[calc(100vh--80px)] w-full flex items-center justify-center bg-cover bg-center overflow-hidden;
 }
 
 .hero__container {

@@ -16,7 +16,7 @@ main{
 }
 
 .header__container.is-open {
-  @apply max-h-[270px] rounded-[35px];
+  @apply max-h-[252px] rounded-[35px];
 }
 
 .header__top {

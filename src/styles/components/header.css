@@ -17,7 +17,7 @@
 }
 
 .hamburger {
-  @apply md:hidden block pb-[5px] pt-[11px]; /* Zichtbaar op mobiel */
+  @apply md:hidden block pb-[5px] pt-[11px] mr-2; /* Zichtbaar op mobiel */
 }
 
 .header__logo {
@@ -68,7 +68,7 @@ ol#nav-menu{
 }
 
 li.header__menu-item a {
-  @apply flex items-center mb-[5px] w-full rounded-none md:bg-transparent bg-[#1F2836] p-[10px]; /* Styling met Tailwind */
+  @apply flex items-center mb-[6px] w-full rounded-none md:bg-transparent bg-[#1F2836] p-[11px] px-[18px] max-w-[unset]; /* Styling met Tailwind */
 }
 
 li.header__menu-item a::before {
@@ -80,7 +80,7 @@ li.header__menu-item a::before {
 }
 
 ol#nav-menu li:last-child a {
-  @apply rounded-b-[25px] mb-[2px] md:rounded-b-[0px] md:mb-[0px];
+  @apply rounded-b-[25px] mb-[3px] md:rounded-b-[0px] md:mb-[0px];
 }
 
 ol#nav-menu li:first-child a {

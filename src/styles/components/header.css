@@ -1,11 +1,18 @@
-/* header.css */
 .header {
-  @apply absolute left-[20px] right-[20px] top-4 mx-auto md:bg-transparent text-white;
+  @apply absolute left-[20px] right-[20px] top-4 mx-auto md:bg-transparent text-white z-10;
 }
 
-/* Header container */
 .header__container {
   @apply max-h-[68px] md:bg-transparent bg-[#101418] rounded-[35px] overflow-hidden mx-auto flex flex-col max-w-[1280px] p-[10px] gap-2.5 md:flex-row md:justify-between md:items-center duration-500 ease-in-out;
+}
+
+main.blur {
+  @apply pointer-events-none select-none;
+  filter: blur(5px) brightness(0.7);
+}
+
+main{
+  @apply transition-all duration-[500ms];
 }
 
 .header__container.is-open {

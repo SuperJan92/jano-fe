@@ -8,8 +8,10 @@ hamburger.addEventListener("click", function() {
 document.addEventListener("DOMContentLoaded", () => {
     const headerContainer = document.querySelector(".header__container");
     const hamburgerButton = document.querySelector("button.hamburger");
+    const mainblur = document.querySelector("main");
 
     hamburgerButton.addEventListener("click", () => {
         headerContainer.classList.toggle("is-open");
+        mainblur.classList.toggle("blur");
     });
 });

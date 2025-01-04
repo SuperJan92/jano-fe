@@ -3,7 +3,7 @@
 }
 
 .header__container {
-  @apply max-h-[68px] md:bg-transparent bg-[#101418] rounded-[35px] overflow-hidden mx-auto flex flex-col max-w-[1280px] p-[10px] gap-2.5 md:flex-row md:justify-between md:items-center duration-500 ease-in-out;
+  @apply max-h-[72px] p-[11px] md:bg-transparent bg-[#101418] rounded-[35px] overflow-hidden mx-auto flex flex-col max-w-[1280px] gap-2.5 md:flex-row md:justify-between md:items-center duration-200 ease-in-out;
 }
 
 main.blur {
@@ -24,38 +24,37 @@ main{
 }
 
 .hamburger {
-  @apply md:hidden block pb-[5px] pt-[11px] mr-2; /* Zichtbaar op mobiel */
+  @apply md:hidden block pb-[5px] pt-[11px] mr-1;
 }
 
 .header__logo {
-  @apply flex items-center; /* Flexbox voor logo uitlijning */
+  @apply flex items-center;
 }
 
 .header__logo-text {
-  @apply font-goldplay text-custom-orange text-2xl; /* Goldplay font en de tekstkleur */
+  @apply font-goldplay text-custom-orange text-2xl;
 }
 
 .header__nav {
-  @apply flex items-center pt-2 pb-7; /* Flexbox voor nav-items */
+  @apply flex items-center pt-2 pb-7 md:pb-0 md:pt-0;
 }
 
 .header__menu {
-  @apply md:flex block md:space-x-8; /* Flexbox voor horizontale lijst met items, vergroot ruimte tussen items */
-  counter-reset: item; /* Reset de counter voor de lijst */
+  @apply md:flex block;
+  counter-reset: item;
 }
 
 .header__menu-item {
-  @apply list-none; /* Verwijder standaard lijststijl */
+  @apply list-none;
 }
 
-/* Voeg nummering toe aan lijstitems */
 .header__menu li {
-  @apply text-custom-orange; /* Gebruik de Tailwind kleur */
-  list-style: none; /* Verwijder standaard lijststijl */
+  @apply text-custom-orange;
+  list-style: none;
 }
 
 .header__menu-link {
-  @apply text-sm mb-6 max-w-[500px] text-left font-opensans text-[rgb(161,161,161)] opacity-100 text-white hover:text-custom-orange transition;
+  @apply text-sm text-custom-gray md:mb-0 mb-6 max-w-[500px] text-left font-opensans opacity-100 hover:text-custom-orange transition;
 }
 
 .hamburger-inner, .hamburger-inner::before, .hamburger-inner::after {
@@ -75,7 +74,7 @@ ol#nav-menu{
 }
 
 li.header__menu-item a {
-  @apply flex items-center mb-[5px] w-full rounded-[5px] md:rounded-none md:bg-transparent bg-[#181C22] p-[11px] px-[18px] max-w-[unset]; /* Styling met Tailwind */
+  @apply flex items-center md:mb-0 mb-[5px] w-full rounded-[5px] md:rounded-none md:bg-transparent bg-[#181C22] p-[11px] px-[18px] max-w-[unset]; /* Styling met Tailwind */
 }
 
 li.header__menu-item a::before {

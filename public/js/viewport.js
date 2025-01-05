@@ -22,3 +22,9 @@ document.addEventListener("DOMContentLoaded", () => {
         loaderElement.style.display = ''; // Herstel oorspronkelijke display
     }
 });
+document.addEventListener('touchstart', () => {
+    const heroElement = document.querySelector('.hero');
+    if (heroElement) {
+        heroElement.offsetHeight; // Force layout recalculatie
+    }
+}, { once: true }); // Alleen de eerste keer dat de pagina wordt aangeraakt

@@ -3,7 +3,7 @@ html, body {
 }
 
 .hero {
-  height: calc(var(--vh) * 100);
+  height: 100dvh; /* Gebruik dvh voor de dynamische hoogte */
   @apply w-full flex items-center justify-center bg-cover bg-center overflow-hidden;
 }
 

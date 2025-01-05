@@ -2,15 +2,15 @@
 const { small_title, title_first, title_second, text_block, button_text_, button_link } = Astro.props;
 ---
 <section class="hero">
-        <div class="hero__container">
-                <p class="hero__small-title">{small_title}</p>
-                <h1 class="hero__title hero__title--main">{title_first}</h1>
-                <h1 class="hero__title hero__title--sub">{title_second}</h1>
-                <p class="hero__text">{text_block}</p>
-                {button_text_ && button_link && (
-                    <a href={button_link} class="hero__button">
-                            {button_text_}
-                    </a>
-                )}
-        </div>
+    <div class="hero__container">
+        <p class="hero__small-title">{small_title}</p>
+        <h1 class="hero__title hero__title--main">{title_first}</h1>
+        <h1 class="hero__title hero__title--sub">{title_second}</h1>
+        <p class="hero__text">{text_block}</p>
+        {button_text_ && button_link && (
+            <a href={button_link} class="hero__button">
+                {button_text_}
+            </a>
+        )}
+    </div>
 </section>

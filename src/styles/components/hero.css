@@ -1,9 +1,5 @@
-html, body {
-  @apply m-0 p-0 overflow-x-hidden;
-}
-
 .hero {
-  height: 100dvh; /* Gebruik dvh voor de dynamische hoogte */
+  height: calc(100dvh + 85px);
   @apply w-full flex items-center justify-center bg-cover bg-center overflow-hidden;
 }
 

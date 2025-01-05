@@ -7,27 +7,27 @@ import Preloader from '../components/Preloader.astro'; // Import preloader compo
 <!doctype html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8" />
-	<meta name="viewport" content="width=device-width" />
-	<link rel="icon" type="image/svg+xml" href="/favi.png" />
-	<meta name="generator" content={Astro.generator} />
-	<title>Jan Hylke van Erkel</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favi.png" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Jan Hylke van Erkel</title>
 </head>
 <body class="bg-custom-bg text-white">
 <Preloader />
 <Header />
 <main>
-	<slot />
+    <slot />
 </main>
 <script type="module" src="/js/hamburger.js"></script>
 </body>
 </html>
 
 <style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
+    html,
+    body {
+        margin: 0;
+        width: 100%;
+        height: 100%;
+    }
 </style>

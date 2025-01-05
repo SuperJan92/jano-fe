@@ -1,0 +1,27 @@
+.about {
+  @apply py-16 flex justify-center items-center overflow-hidden; /* Padding en centreren */
+}
+
+.about__container {
+  @apply grid grid-cols-1 gap-8 max-w-[1200px] w-full px-[29px] text-left; /* Grid layout */
+}
+
+.about__content {
+  @apply flex flex-col gap-2 justify-center; /* Content in een kolom met ruimte tussen elementen */
+}
+
+.about__title {
+  @apply text-custom-orange text-4xl font-semibold mb-4; /* Vergelijkbaar met hero titel */
+}
+
+.about__text {
+  @apply text-custom-lightgray text-base leading-relaxed mt-4; /* Vergelijkbaar met hero tekst */
+}
+
+.about__image {
+  @apply flex justify-center items-center; /* Afbeelding gecentreerd */
+}
+
+.about__img {
+  @apply rounded shadow-md max-w-full h-auto; /* Rondere hoeken en schaduw */
+}

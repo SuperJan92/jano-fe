@@ -4,15 +4,21 @@ document.addEventListener("DOMContentLoaded", () => {
         document.documentElement.style.setProperty('--vh', `${vh}px`);
     }
 
-    // Stel de juiste viewporthoogte in bij laden en resizing
+    // Stel de viewporthoogte in bij laden en resizing
     setViewportHeight();
     window.addEventListener('resize', setViewportHeight);
 
-    // Simuleer een klik op de body na het laden
-    const body = document.querySelector('body');
-    if (body) {
-        setTimeout(() => {
-            body.click(); // Virtuele klik
-        }, 100); // Wacht 100ms na laden
+    // Forceer een reflow op de hero en loader elementen
+    const heroElement = document.querySelector('.hero');
+    const loaderElement = document.querySelector('#js-overlay'); // Pas aan naar jouw loader-ID
+    if (heroElement) {
+        heroElement.style.display = 'none';
+        heroElement.offsetHeight; // Trigger reflow
+        heroElement.style.display = 'flex'; // Herstel oorspronkelijke display
+    }
+    if (loaderElement) {
+        loaderElement.style.display = 'none';
+        loaderElement.offsetHeight; // Trigger reflow
+        loaderElement.style.display = ''; // Herstel oorspronkelijke display
     }
 });

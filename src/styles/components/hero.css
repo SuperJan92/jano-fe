@@ -3,12 +3,8 @@ html, body {
 }
 
 .hero {
-  @apply w-full flex items-center justify-center bg-cover bg-center overflow-hidden;
   height: calc(var(--vh) * 100);
-  min-height: calc(100vh);
-  padding: 0;
-  margin: 0;
-  @apply relative;
+  @apply w-full flex items-center justify-center bg-cover bg-center overflow-hidden;
 }
 
 .hero__container {

@@ -10,8 +10,8 @@ export default {
       colors: {
         'custom-orange': '#ff9d20',
         'custom-gray': '#bdbfc3',
-        'custom-darkgray': '#595e65',
-        'custom-lightgray': '#a1a1a1',
+        'custom-darkgray': '#6a6e74',
+        'custom-lightgray': '#7C838C',
         'custom-bg': '#141a23',
       },
       fontFamily: {

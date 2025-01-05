@@ -1,5 +1,5 @@
 .hero {
-  height: calc(100dvh + 85px);
+  height: calc(100vh + 85px);
   @apply w-full flex items-center justify-center bg-cover bg-center overflow-hidden;
 }
 

@@ -4,11 +4,15 @@ document.addEventListener("DOMContentLoaded", () => {
         document.documentElement.style.setProperty('--vh', `${vh}px`);
     }
 
+    // Stel de juiste viewporthoogte in bij laden en resizing
     setViewportHeight();
     window.addEventListener('resize', setViewportHeight);
 
-    const heroElement = document.querySelector('.hero');
-    if (heroElement) {
-        heroElement.offsetHeight; // Trigger een reflow
+    // Simuleer een klik op de body na het laden
+    const body = document.querySelector('body');
+    if (body) {
+        setTimeout(() => {
+            body.click(); // Virtuele klik
+        }, 100); // Wacht 100ms na laden
     }
 });

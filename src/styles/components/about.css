@@ -11,7 +11,7 @@
 }
 
 .about__title {
-  @apply text-custom-orange text-4xl font-semibold mb-4; /* Vergelijkbaar met hero titel */
+  @apply text-custom-gray text-4xl font-semibold mb-4; /* Vergelijkbaar met hero titel */
 }
 
 .about__text {

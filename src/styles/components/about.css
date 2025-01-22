@@ -3,7 +3,17 @@
 }
 
 .about__container {
-  @apply grid grid-cols-1 gap-8 max-w-[1200px] w-full px-[29px] text-left; /* Grid layout */
+  @apply grid gap-8 w-full px-[29px] text-left; /* Grid layout zonder specifieke kolommen */
+}
+
+/* Als er geen afbeelding is, zet de container op 1 kolom */
+.about__container--no-image {
+  @apply grid-cols-1; /* Zet de container op 1 kolom wanneer er geen afbeelding is */
+}
+
+/* Als er wel een afbeelding is, zet de container op 2 kolommen */
+.about__container--image {
+  @apply grid-cols-1 md:grid-cols-2; /* 1 kolom op mobiel, 2 kolommen op grotere schermen */
 }
 
 .about__content {

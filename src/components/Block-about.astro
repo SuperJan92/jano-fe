@@ -1,15 +1,16 @@
 ---
-const { about_title, about_text, about_image } = Astro.props;
+const { about_title, about_text, about_image, about_image_url } = Astro.props;
 ---
+
 <section class="about">
-    <div class="about__container">
+    <div class={`about__container ${!about_image ? 'about__container--no-image' : 'about__container--image'}`}>
         <div class="about__content">
             <h2 class="about__title">{about_title}</h2>
             <p class="about__text">{about_text}</p>
         </div>
         {about_image && (
             <div class="about__image">
-                <img src={about_image} alt="About image" class="about__img" />
+                <img src={about_image_url} alt="About image" class="about__img" />
             </div>
         )}
     </div>

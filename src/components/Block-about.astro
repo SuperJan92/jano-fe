@@ -1,13 +1,20 @@
 ---
-const { about_title, about_text, about_image, about_image_url } = Astro.props;
+const { about_title = 'Default Title', about_text = '', about_image, about_image_url } = Astro.props;
+const paragraphs = about_text.split(/\r\n|\n/).filter((paragraph) => paragraph.trim() !== '');
 ---
 
 <section class="about">
     <div class={`about__container ${!about_image ? 'about__container--no-image' : 'about__container--image'}`}>
         <div class="about__content">
             <h2 class="about__title">{about_title}</h2>
-            <p class="about__text">{about_text}</p>
+
+            <div class="about__text">
+                {paragraphs.map((paragraph, index) => (
+                    <p key={index}>{paragraph}</p>
+                ))}
+            </div>
         </div>
+
         {about_image && (
             <div class="about__image">
                 <img src={about_image_url} alt="About image" class="about__img" />

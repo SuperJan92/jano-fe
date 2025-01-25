@@ -1,37 +1,35 @@
 .about {
-  @apply py-16 flex justify-center items-center overflow-hidden; /* Padding en centreren */
+  @apply py-16 flex justify-center items-center overflow-hidden;
 }
 
 .about__container {
-  @apply grid gap-8 w-full px-[29px] text-left; /* Grid layout zonder specifieke kolommen */
+  @apply grid gap-8 w-full px-[29px] text-left;
 }
 
-/* Als er geen afbeelding is, zet de container op 1 kolom */
 .about__container--no-image {
-  @apply grid-cols-1; /* Zet de container op 1 kolom wanneer er geen afbeelding is */
+  @apply grid-cols-1;
 }
 
-/* Als er wel een afbeelding is, zet de container op 2 kolommen */
 .about__container--image {
-  @apply grid-cols-1 md:grid-cols-2; /* 1 kolom op mobiel, 2 kolommen op grotere schermen */
+  @apply grid-cols-1 md:grid-cols-2;
 }
 
 .about__content {
-  @apply flex flex-col gap-2 justify-center; /* Content in een kolom met ruimte tussen elementen */
+  @apply flex flex-col gap-2 justify-center;
 }
 
 .about__title {
-  @apply text-custom-gray text-4xl font-semibold mb-4; /* Vergelijkbaar met hero titel */
+  @apply text-custom-gray text-4xl font-semibold mb-4;
 }
 
 .about__text {
-  @apply text-custom-lightgray text-base leading-relaxed mt-4; /* Vergelijkbaar met hero tekst */
+  @apply text-custom-lightgray text-base leading-relaxed;
 }
 
 .about__image {
-  @apply flex justify-center items-center; /* Afbeelding gecentreerd */
+  @apply flex justify-center items-center;
 }
 
 .about__img {
-  @apply rounded shadow-md max-w-full h-auto; /* Rondere hoeken en schaduw */
+  @apply rounded shadow-md max-w-full h-auto;
 }

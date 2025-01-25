@@ -1,24 +1,37 @@
 ---
-const { about_title = 'Default Title', about_text = '', about_image, about_image_url } = Astro.props;
+const { about_title, about_text = '', about_image, about_image_url, ...rest } = Astro.props;
+const bulletList = Object.entries(rest)
+    .filter(([key]) => key.startsWith('bullet_list_') && key.endsWith('_item'))
+    .map(([_, value]) => value); // Map de waarden (de items) naar een array
+
 const paragraphs = about_text.split(/\r\n|\n/).filter((paragraph) => paragraph.trim() !== '');
 ---
 
-<section class="about">
-    <div class={`about__container ${!about_image ? 'about__container--no-image' : 'about__container--image'}`}>
+<section id="block-about" class="about">
+    <div class="about__container">
+        {/* Titel neemt een volledige rij in */}
+        <h2 class="about__title">{about_title}</h2>
+
         <div class="about__content">
-            <h2 class="about__title">{about_title}</h2>
-
-            <div class="about__text">
-                {paragraphs.map((paragraph, index) => (
-                    <p key={index}>{paragraph}</p>
-                ))}
+            <div>
+                <div class="about__text">
+                    {paragraphs.map((paragraph, index) => (
+                        <p key={index}>{paragraph}</p>
+                    ))}
+                </div>
+                {bulletList.length > 0 && (
+                    <ul class="about__list">
+                        {bulletList.map((item, index) => (
+                            <li key={index}>{item}</li>
+                        ))}
+                    </ul>
+                )}
             </div>
+            {about_image && (
+                <div class="about__image">
+                    <img src={about_image_url} alt="About image" class="about__img" />
+                </div>
+            )}
         </div>
-
-        {about_image && (
-            <div class="about__image">
-                <img src={about_image_url} alt="About image" class="about__img" />
-            </div>
-        )}
     </div>
 </section>

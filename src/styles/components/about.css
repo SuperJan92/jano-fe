@@ -1,25 +1,17 @@
 .about {
-  @apply py-16 flex justify-center items-center overflow-hidden;
+  @apply min-h-screen flex justify-center items-center overflow-hidden max-w-[950px] mx-auto;
 }
 
 .about__container {
-  @apply grid gap-8 w-full px-[29px] text-left;
-}
-
-.about__container--no-image {
-  @apply grid-cols-1;
-}
-
-.about__container--image {
-  @apply grid-cols-1 md:grid-cols-2;
-}
-
-.about__content {
-  @apply flex flex-col gap-2 justify-center;
+  @apply grid w-full px-[29px] text-left; /* Gap voor consistentie tussen mobiele en desktop-weergave */
 }
 
 .about__title {
-  @apply text-custom-gray text-4xl font-semibold mb-4;
+  @apply text-custom-gray text-4xl font-semibold mb-6 col-span-full; /* Titel neemt volledige breedte in */
+}
+
+.about__content {
+  @apply grid grid-cols-1 md:grid-cols-[3fr_2fr] gap-8 items-center; /* Tekst links, afbeelding rechts */
 }
 
 .about__text {
@@ -31,5 +23,24 @@
 }
 
 .about__img {
-  @apply rounded shadow-md max-w-full h-auto;
+  @apply rounded-full shadow-md max-w-full h-auto;
+}
+
+.about__list {
+  @apply columns-1 sm:columns-2 mt-8 text-custom-lightgray text-base leading-relaxed list-none pl-1;
+}
+
+.about__list li {
+  @apply mb-2; /* Ruimte tussen lijstitems */
+}
+
+ul.about__list li:before {
+  content: '';
+  font-weight: bold;
+  margin-right: 0.9rem;
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 100%;
+  border: 0.1rem solid #ff9d20; /* Oranje border */
 }

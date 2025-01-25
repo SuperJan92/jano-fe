@@ -7,7 +7,7 @@ html, body {
 }
 
 .header__container {
-  @apply max-h-[72px] p-[11px] md:bg-transparent bg-[#101418] rounded-[35px] overflow-hidden mx-auto flex flex-col max-w-[1280px] gap-2.5 md:flex-row md:justify-between md:items-center duration-200 ease-in-out;
+  @apply max-h-[72px] p-[11px] md:bg-transparent bg-[#101418] rounded-[35px] overflow-hidden mx-auto flex flex-col max-w-[1400px] gap-2.5 md:flex-row md:justify-between md:items-center duration-200 ease-in-out;
 }
 
 main.blur {
@@ -84,7 +84,7 @@ li.header__menu-item a {
 li.header__menu-item a::before {
   content: counter(item, decimal-leading-zero) ". "; /* Genummerde lijst */
   margin-right: 5px; /* Gebruik Tailwind's margewaarde */
-  @apply text-sm font-bold text-[#ff9d20]; /* Styling voor tekst */
+  @apply text-xs font-bold text-[#ff9d20]; /* Styling voor tekst */
   counter-increment: item; /* Teller verhogen */
   display: inline-block; /* Zorg dat het naast de tekst staat */
 }

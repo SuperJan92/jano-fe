@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "astro": "^5.1.1",
-    "gsap": "^3.12.5",
+    "gsap": "^3.12.7",
     "hamburgers": "^1.2.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"

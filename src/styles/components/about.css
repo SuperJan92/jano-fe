@@ -19,11 +19,26 @@
 }
 
 .about__image {
-  @apply flex justify-center items-center;
+  @apply flex justify-center items-center relative; /* Zorg dat overlay correct wordt gepositioneerd */
 }
 
 .about__img {
   @apply rounded-full shadow-md max-w-full h-auto;
+  filter: grayscale(100%); /* Maak de afbeelding zwart-wit */
+  transition: filter 0.5s ease; /* Smooth overgang naar kleur */
+}
+
+.about__overlay {
+  @apply absolute inset-0 bg-orange-500 opacity-60 rounded-full; /* Overlay met oranje kleur */
+  transition: opacity 0.5s ease; /* Smooth fade-out effect */
+}
+
+.about__image:hover .about__img {
+  filter: grayscale(0%); /* Verwijder zwart-wit filter bij hover */
+}
+
+.about__image:hover .about__overlay {
+  opacity: 0; /* Verwijder de oranje overlay bij hover */
 }
 
 .about__list {

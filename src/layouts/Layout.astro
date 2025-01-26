@@ -7,11 +7,20 @@ import Preloader from '../components/Preloader.astro'; // Import preloader compo
 <!doctype html>
 <html lang="en">
 <head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-3TDTC8W4FX"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-3TDTC8W4FX');
+    </script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favi.png" />
     <meta name="generator" content={Astro.generator} />
     <title>Jan Hylke van Erkel</title>
+    <script type="module" src="/js/main.js"></script>
 </head>
 <body class="bg-custom-bg text-white">
 <Preloader />
@@ -19,15 +28,5 @@ import Preloader from '../components/Preloader.astro'; // Import preloader compo
 <main>
     <slot />
 </main>
-<script type="module" src="/js/hamburger.js"></script>
 </body>
 </html>
-
-<style>
-    html,
-    body {
-        margin: 0;
-        width: 100%;
-        height: 100%;
-    }
-</style>

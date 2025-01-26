@@ -30,6 +30,7 @@ const paragraphs = about_text.split(/\r\n|\n/).filter((paragraph) => paragraph.t
             {about_image && (
                 <div class="about__image">
                     <img src={about_image_url} alt="About image" class="about__img" />
+                    <div class="about__overlay"></div>
                 </div>
             )}
         </div>

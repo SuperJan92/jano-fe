@@ -29,7 +29,7 @@
 }
 
 .about__overlay {
-  @apply absolute inset-0 bg-orange-500 opacity-60 rounded-full; /* Overlay met oranje kleur */
+  @apply absolute inset-0 bg-custom-orange opacity-60 rounded-full; /* Overlay met oranje kleur */
   transition: opacity 0.5s ease; /* Smooth fade-out effect */
 }
 

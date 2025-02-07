@@ -3,7 +3,7 @@ html, body {
 }
 
 .header {
-  @apply absolute left-[20px] right-[20px] top-4 mx-auto md:bg-transparent text-white z-10;
+  @apply fixed left-[20px] right-[20px] top-4 mx-auto md:bg-transparent text-white z-10;
 }
 
 .header__container {

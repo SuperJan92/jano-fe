@@ -2,6 +2,7 @@
 import '../styles/tailwind.css';
 import Header from '../components/Header.astro';
 import Preloader from '../components/Preloader.astro';
+import SmoothScroll from "../components/SmoothScroll.astro";
 ---
 
 <!doctype html>
@@ -29,6 +30,7 @@ import Preloader from '../components/Preloader.astro';
     <title>Jan Hylke van Erkel</title>
 </head>
 <body class="bg-custom-bg text-white">
+<SmoothScroll />
 <Preloader />
 <Header />
 <main>
@@ -37,12 +39,3 @@ import Preloader from '../components/Preloader.astro';
 <script type="module" src="/js/hamburger.js"></script>
 </body>
 </html>
-
-<style>
-    html,
-    body {
-        margin: 0;
-        width: 100%;
-        height: 100%;
-    }
-</style>

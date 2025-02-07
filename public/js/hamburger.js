@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const hamburgerButton = document.querySelector("button.hamburger");
     const mainblur = document.querySelector("main");
     const hamburger = document.querySelector(".hamburger");
-    const scrollableElement = document.querySelector("body"); // Het scrollbare element
+    const scrollableElement = window;
 
     // Toggle menu bij klik op de hamburgerknop
     hamburgerButton.addEventListener("click", (event) => {

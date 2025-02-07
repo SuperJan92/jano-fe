@@ -1,57 +1,53 @@
 ---
-import { getMenu } from '../lib/menu-api'; // Importeer de getMenu functie
-const menuId = 2; // Het ID van het menu dat je wilt ophalen
+import { getMenu } from '../lib/menu-api';
+const menuId = 2;
 let menuItems = [];
 
 try {
-        menuItems = await getMenu(menuId); // Haal het menu op
+    menuItems = await getMenu(menuId);
 } catch (error) {
 }
 ---
 
 <header class="header">
-        <div class="header__container">
-                <!-- Logo en Hamburger in een aparte flex-container -->
-                <div class="header__top">
-                        <a href="/" class="header__logo">
-                                <svg height="50" width="50" xmlns="http://www.w3.org/2000/svg">
-                                        <circle r="20" cx="25" cy="25" fill="transparent" stroke="#ff9d20" stroke-width="3"></circle>
-                                        <text
-                                            x="50%"
-                                            y="52%"
-                                            text-anchor="middle"
-                                            class="header__logo-text"
-                                            fill="#ff9d20"
-                                            stroke-width="2px"
-                                            dy=".3em"
-                                            style="font-size: 28px;"
-                                        >
-                                                J
-                                        </text>
-                                </svg>
-                        </a>
+    <div class="header__container">
+        <div class="header__top">
+            <a href="/" class="header__logo">
+                <svg height="50" width="50" xmlns="http://www.w3.org/2000/svg">
+                    <circle r="20" cx="25" cy="25" fill="transparent" stroke="#ff9d20" stroke-width="3"></circle>
+                    <text
+                        x="50%"
+                        y="52%"
+                        text-anchor="middle"
+                        class="header__logo-text"
+                        fill="#ff9d20"
+                        stroke-width="2px"
+                        dy=".3em"
+                        style="font-size: 28px;"
+                    >
+                        J
+                    </text>
+                </svg>
+            </a>
 
-                        <button class="hamburger hamburger--minus" type="button">
-        <span class="hamburger-box">
-          <span class="hamburger-inner"></span>
-        </span>
-                        </button>
-                </div>
-
-                <!-- Navigatie onder de header__top -->
-                <nav class="header__nav">
-                        <ol id="nav-menu" class="header__menu">
-                                <!-- Dynamisch menu -->
-                                {menuItems.length > 0 ? (
-                                    menuItems.map((item) => (
-                                        <li class="header__menu-item" key={item.id}>
-                                                <a href={item.url} class="header__menu-link">{item.title}</a>
-                                        </li>
-                                    ))
-                                ) : (
-                                    <p>Menu niet gevonden.</p>
-                                )}
-                        </ol>
-                </nav>
+            <button class="hamburger hamburger--minus" type="button">
+                <span class="hamburger-box">
+                    <span class="hamburger-inner"></span>
+                </span>
+            </button>
         </div>
+        <nav class="header__nav">
+            <ol id="nav-menu" class="header__menu">
+                {menuItems.length > 0 ? (
+                    menuItems.map((item: { id: string; url: string; title: string }) => (
+                        <li class="header__menu-item">
+                            <a href={item.url} class="header__menu-link">{item.title}</a>
+                        </li>
+                    ))
+                ) : (
+                    <p>Menu niet gevonden.</p>
+                )}
+            </ol>
+        </nav>
+    </div>
 </header>

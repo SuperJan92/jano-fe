@@ -7,6 +7,23 @@ import Preloader from '../components/Preloader.astro'; // Import preloader compo
 <!doctype html>
 <html lang="en">
 <head>
+    <head>
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-3TDTC8W4FX"></script>
+        <script>
+          declare global {
+            interface Window {
+              dataLayer: any[]
+            }
+            function gtag(command: string, ...args: any[]): void;
+          }
+          window.dataLayer = window.dataLayer || [];
+          function gtag(command: string, ...args: any[]) {
+            window.dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', 'G-3TDTC8W4FX');
+        </script>
+      </head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favi.png" />

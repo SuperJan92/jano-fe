@@ -66,3 +66,9 @@
     transform: scale(0);
   }
 }
+
+.preloader {
+  @apply fixed inset-0 w-full h-full flex items-center justify-center;
+  background-color: #101418;
+  z-index: 9999;
+}

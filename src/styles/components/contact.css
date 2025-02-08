@@ -42,5 +42,9 @@
       border: 1px solid #ff9d20;
     }
   }
+
+  &__button {
+    @apply text-custom-orange border border-custom-orange border-2 rounded-full py-2.5 px-8 text-[14px] mx-auto mt-8 inline-block;
+  }
 }
 

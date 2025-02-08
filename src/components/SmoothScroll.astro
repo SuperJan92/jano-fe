@@ -14,7 +14,16 @@
         const targetElement = document.getElementById(targetId);
 
         if (targetElement) {
-          // Voeg offset toe op mobiel voor het about block
+          // Menu sluiten op mobiel
+          if (window.innerWidth < 768) {
+            // Trigger een klik op de hamburger knop om het menu te sluiten
+            const hamburgerButton = document.querySelector('.hamburger-menu');
+            if (hamburgerButton) {
+              hamburgerButton.dispatchEvent(new Event('click'));
+            }
+          }
+
+          // Scroll naar het doel
           const isMobile = window.innerWidth < 768;
           const isAboutSection = targetId === 'about';
           const offset = (isMobile && isAboutSection) ? 120 : 0;

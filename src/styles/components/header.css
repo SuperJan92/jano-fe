@@ -1,13 +1,28 @@
 html, body {
   @apply m-0 p-0 overflow-x-hidden;
+  padding-top: var(--header-height);
 }
 
 .header {
-  @apply fixed left-[20px] right-[20px] top-4 mx-auto md:bg-transparent text-white z-10;
+  @apply fixed mx-auto md:bg-transparent text-white z-10;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+
+  /* Mobiele styling (kleiner dan 768px) */
+  @media (max-width: 767px) {
+    margin: 10px;
+  }
+
+  /* Desktop styling */
+  @media (min-width: 768px) {
+    margin: 0;
+  }
 
   &__container {
     @apply max-h-[72px] p-[11px] md:bg-transparent bg-[#101418] rounded-[35px] overflow-hidden mx-auto flex flex-col max-w-[1400px] gap-2.5 md:flex-row md:justify-between md:items-center duration-200 ease-in-out;
-
     &.is-open {
       @apply max-h-[252px] rounded-[35px];
     }
@@ -77,12 +92,18 @@ html, body {
 main {
   @apply transition-all duration-[500ms];
 
-  &.blur {
-    @apply pointer-events-none select-none;
-    filter: blur(5px) brightness(0.7);
+  @media (max-width: 767px) {
+    &.blur {
+      @apply pointer-events-none select-none;
+      filter: blur(5px) brightness(0.7);
+    }
   }
 }
 
 ol#nav-menu {
   @apply w-full;
+}
+
+.header--hidden {
+  transform: translateY(-100%);
 }

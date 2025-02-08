@@ -7,5 +7,6 @@ export default defineConfig({
                 additionalData: `@use "src/styles/main.scss" as *;`,
             },
         },
+        postcss: './postcss.config.cjs'
     },
 });

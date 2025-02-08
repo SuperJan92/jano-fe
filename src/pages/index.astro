@@ -2,7 +2,20 @@
 import Layout from "../layouts/Layout.astro";
 import BlockAbout from "../components/Block-about.astro";
 import BlockHero from "../components/Block-hero.astro";
+import BlockContact from "../components/Block-contact.astro";
 import { getPages, getBlocks } from "../lib/wp-api";
+
+interface Page {
+	id: number;
+	slug: string;
+}
+
+interface Block {
+	blockName: string;
+	attributes: {
+		data: Record<string, any>;
+	};
+}
 
 // Variabelen voor data-opslag
 let homePage = null;
@@ -12,18 +25,21 @@ let error = null;
 try {
 	// Haal alle pagina's op
 	const pages = await getPages();
+	console.log('Ontvangen paginas:', pages);
 
 	// Zoek de pagina met de slug 'home'
-	homePage = pages.find((p) => p.slug === "home");
+	homePage = pages.find((p: Page) => p.slug === "home");
+	console.log('Gevonden homepage:', homePage);
 
 	// Haal de blokken op voor de homepagina
 	if (homePage) {
 		blocks = await getBlocks(homePage.id);
+		console.log('Ontvangen blokken:', blocks);
 	} else {
 		console.warn("Homepagina niet gevonden. Controleer de slug 'home'.");
 	}
-} catch (e) {
-	error = e.message; // Bewaar foutmelding
+} catch (e: unknown) {
+	error = e instanceof Error ? e.message : 'Er is een onbekende fout opgetreden';
 	console.error("Error fetching data in index.astro:", e);
 }
 ---
@@ -38,28 +54,39 @@ try {
 				<div>
 					{/* Render dynamisch de blokken */}
 					{blocks.length > 0 ? (
-						blocks.map((block, index) => {
-							console.log(`Rendering block ${index + 1}:`, block); // Debugging
-							switch (block.blockName) {
-								case "acf/heroblock":
-									return (
-										<BlockHero
-											key={`hero-block-${index}`}
-											{...block.attributes.data}
-										/>
-									);
-								case "acf/aboutblock":
-									return (
-										<BlockAbout
-											key={`about-block-${index}`}
-											{...block.attributes.data}
-										/>
-									);
-								default:
-									console.warn("Onbekend blok:", block.blockName);
-									return null; // Onbekend bloktype overslaan
-							}
-						})
+						blocks
+							.filter((block: Block) => 
+								["acf/heroblock", "acf/aboutblock", "acf/contactblock"].includes(block.blockName)
+							)
+							.map((block: Block, index: number) => {
+								console.log(`Rendering block ${index + 1}:`, block);
+								switch (block.blockName) {
+									case "acf/heroblock":
+										return (
+											<BlockHero
+												key={`hero-block-${index}`}
+												{...block.attributes.data}
+											/>
+										);
+									case "acf/aboutblock":
+										return (
+											<BlockAbout
+												key={`about-block-${index}`}
+												{...block.attributes.data}
+											/>
+										);
+									case "acf/contactblock":
+										return (
+											<BlockContact
+												key={`contact-block-${index}`}
+												{...block.attributes.data}
+											/>
+										);
+									default:
+										console.warn("Onbekend blok:", block.blockName);
+										return null; // Onbekend bloktype overslaan
+								}
+							})
 					) : (
 						<p class="text-gray-500">Geen blokken gevonden voor de homepagina</p>
 					)}

@@ -1,0 +1,10 @@
+---
+const { contact_title, contact_text, contact_button_text, contact_button_link } = Astro.props;
+---
+<section id="contact" class="contact">
+    <div class="contact__container">
+        <h2 class="contact__title">{contact_title}</h2>
+        <p class="contact__text">{contact_text}</p>
+        <a href={contact_button_link} class="contact__button">{contact_button_text}</a>
+    </div>
+</section>

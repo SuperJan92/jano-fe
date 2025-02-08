@@ -5,6 +5,7 @@
 @import './components/hero.css';
 @import './components/header.css';
 @import './components/preloader.css';
+@import './components/contact.css';
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

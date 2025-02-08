@@ -1,0 +1,46 @@
+.contact {
+  @apply min-h-[100vh] flex justify-center items-center overflow-hidden mx-auto;
+
+  &__container {
+    @apply w-full max-w-[600px] px-[29px] text-center; /* Aangepast naar gecentreerde tekst en max breedte */
+  }
+
+  &__title {
+    @apply text-custom-gray text-4xl font-semibold mb-6 text-center; /* Titel gecentreerd */
+  }
+
+  &__content {
+    @apply grid grid-cols-1 gap-8 items-center; /* Verwijderd md:grid-cols voor enkele kolom layout */
+  }
+
+  &__text {
+    @apply text-custom-lightgray text-base leading-relaxed text-center; /* Tekst gecentreerd */
+  }
+
+  &__image {
+    @apply flex justify-center items-center;
+  }
+
+  &__img {
+    @apply rounded-full shadow-md max-w-full h-auto;
+  }
+
+  &__list {
+    @apply columns-1 mt-8 text-custom-lightgray text-base leading-relaxed list-none pl-1 mx-auto; /* Verwijderd sm:columns-2 voor enkele kolom */
+  }
+
+  &__list li {
+    @apply mb-2 text-center; /* Lijstitems gecentreerd */
+
+    &::before {
+      content: '';
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      margin-right: 0.9rem;
+      border-radius: 9999px;
+      border: 1px solid #ff9d20;
+    }
+  }
+}
+

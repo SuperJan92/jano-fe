@@ -1,15 +1,6 @@
-/** @typedef {Object} MenuItem
- * @property {string} id
- * @property {string} url
- * @property {string} title
- */
-
 const apiKey = import.meta.env.VITE_WP_KEY;
 const API_BASE = "https://admin.janvanerkel.nl/wp-json/wp/v2";
 
-/** @param {number} menuId
- * @returns {Promise<MenuItem[]>}
- */
 export async function getMenu(menuId) {
     try {
         const response = await fetch(`${API_BASE}/menus/${menuId}/items`, {

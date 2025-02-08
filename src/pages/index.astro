@@ -5,36 +5,38 @@ import BlockHero from "../components/Block-hero.astro";
 import BlockContact from "../components/Block-contact.astro";
 import { getPages, getBlocks } from "../lib/wp-api";
 
-interface Page {
-	id: number;
-	slug: string;
-}
-
-interface Block {
-	blockName: string;
-	attributes: {
-		data: Record<string, any>;
-	};
-}
+// Verwijder de oude interfaces (Page en Block) omdat we WordPressPage en WordPressBlock gebruiken
 
 // Variabelen voor data-opslag
-let homePage = null;
-let blocks = [];
-let error = null;
+let homePage: WordPressPage | null = null;
+let blocks: WordPressBlock[] = [];
+let error: string | null = null;
+let debugData: {
+	pages: WordPressPage[] | null;
+	homepage: WordPressPage | null;
+	blocks: WordPressBlock[] | null;
+} = {
+	pages: null,
+	homepage: null,
+	blocks: null
+};
 
 try {
 	// Haal alle pagina's op
 	const pages = await getPages();
 	console.log('Ontvangen paginas:', pages);
+	debugData.pages = pages;
 
 	// Zoek de pagina met de slug 'home'
-	homePage = pages.find((p: Page) => p.slug === "home");
+	homePage = pages.find((p) => p.slug === "home") || null;
 	console.log('Gevonden homepage:', homePage);
+	debugData.homepage = homePage;
 
 	// Haal de blokken op voor de homepagina
 	if (homePage) {
 		blocks = await getBlocks(homePage.id);
 		console.log('Ontvangen blokken:', blocks);
+		debugData.blocks = blocks;
 	} else {
 		console.warn("Homepagina niet gevonden. Controleer de slug 'home'.");
 	}
@@ -55,10 +57,10 @@ try {
 					{/* Render dynamisch de blokken */}
 					{blocks.length > 0 ? (
 						blocks
-							.filter((block: Block) => 
+							.filter((block) => 
 								["acf/heroblock", "acf/aboutblock", "acf/contactblock"].includes(block.blockName)
 							)
-							.map((block: Block, index: number) => {
+							.map((block, index) => {
 								console.log(`Rendering block ${index + 1}:`, block);
 								switch (block.blockName) {
 									case "acf/heroblock":

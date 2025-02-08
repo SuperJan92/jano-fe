@@ -1,11 +1,20 @@
 ---
-import { getMenu } from '../lib/menu-api';
+import { getMenu } from '../lib/menu-api.js';
+
+interface MenuItem {
+    id: string;
+    url: string;
+    title: string;
+}
+
 const menuId = 2;
-let menuItems = [];
+let menuItems: MenuItem[] = [];
 
 try {
     menuItems = await getMenu(menuId);
-} catch (error) {
+} catch (e: unknown) {
+    console.error('Menu error:', e);
+    menuItems = [];
 }
 ---
 
@@ -39,7 +48,7 @@ try {
         <nav class="header__nav">
             <ol id="nav-menu" class="header__menu">
                 {menuItems.length > 0 ? (
-                    menuItems.map((item: { id: string; url: string; title: string }) => (
+                    menuItems.map((item: MenuItem) => (
                         <li class="header__menu-item">
                             <a href={item.url} class="header__menu-link">{item.title}</a>
                         </li>

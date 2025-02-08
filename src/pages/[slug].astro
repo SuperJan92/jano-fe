@@ -6,7 +6,7 @@ import BlockContact from "../components/Block-contact.astro";
 import { getPages, getBlocks } from "../lib/wp-api";
 
 export async function getStaticPaths() {
-    let pages = [];
+    let pages: Pages = [];
     try {
         pages = await getPages();
     } catch (e) {
@@ -15,24 +15,37 @@ export async function getStaticPaths() {
 
     return pages.map((page) => ({
         params: { slug: page.slug },
+        props: { page }
     }));
 }
 
-let page = null;
-let blocks = [];
-let error = null;
+interface Props {
+    page: WordPressPage;
+}
+
+const { page: initialPage } = Astro.props;
+let page: WordPressPage | null = initialPage || null;
+let blocks: Blocks = [];
+let error: string | null = null;
 
 try {
-    const { slug } = Astro.params;
-    const pages = await getPages();
-    page = pages.find((p) => p.slug === slug);
+    if (!page) {
+        const { slug } = Astro.params;
+        const pages = await getPages();
+        page = pages.find((p) => p.slug === slug) || null;
+    }
 
     if (page) {
         blocks = await getBlocks(page.id);
     }
 } catch (e) {
-    error = e.message;
-    console.error("Error fetching data in [slug].astro:", e);
+    if (e instanceof Error) {
+        error = e.message;
+        console.error("Error fetching data in [slug].astro:", e);
+    } else {
+        error = "Er is een onbekende fout opgetreden";
+        console.error("Unknown error in [slug].astro:", e);
+    }
 }
 ---
 

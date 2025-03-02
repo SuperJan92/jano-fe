@@ -5,3 +5,77 @@ main {
 .about__text p {
     @apply mb-3;
 }
+
+/* Scroll padding voor menu navigatie */
+html {
+    scroll-padding-top: 120px; /* Verhoogd van 80px naar 120px voor betere zichtbaarheid van secties */
+}
+
+/* Aanpassingen voor schermen met beperkte hoogte */
+@media (max-height: 500px) {
+    html {
+        scroll-padding-top: 140px; /* Verhoogd van 100px naar 140px voor lage schermen */
+    }
+    
+    section {
+        min-height: auto !important;
+        height: auto !important;
+        margin-top: 100px !important;
+        margin-bottom: 120px !important;
+        padding: 0;
+        display: block;
+    }
+    
+    .hero {
+        margin-top: 40px !important; /* Expliciet margin-top instellen */
+        height: auto !important;
+        padding-top: 0;
+    }
+    
+    .hero__container, 
+    .about__container, 
+    .contact__container {
+        padding: 20px;
+        height: auto !important;
+    }
+}
+
+/* Aanpassingen voor mobiele schermen */
+@media (max-width: 767px) {
+    .about__image--mobile {
+        max-width: 150px;
+        margin: 0 auto 20px 0; /* Links uitgelijnd */
+        display: block !important;
+    }
+    
+    .about__image--desktop {
+        display: none !important;
+    }
+    
+    .about__container {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start; /* Links uitgelijnd */
+    }
+    
+    /* Verplaats de afbeelding boven de titel */
+    .about__title {
+        order: 1;
+    }
+    
+    .about__content {
+        order: 2;
+        width: 100%;
+    }
+}
+
+/* Aanpassingen voor schermen onder 600px */
+@media (max-width: 600px) {
+    section#about {
+        padding-top: 80px;
+    }
+    
+    section#contact {
+        margin-top: 140px !important;
+    }
+}

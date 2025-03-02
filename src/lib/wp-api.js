@@ -1,3 +1,4 @@
+// Gebruik de API key uit environment variables of gebruik de fallback voor productie
 const apiKey = import.meta.env.VITE_WP_KEY;
 const API_BASE = "https://admin.janvanerkel.nl/wp-json/wp/v2";
 const CUSTOM_API_BASE = "https://admin.janvanerkel.nl/wp-json/custom/v1";

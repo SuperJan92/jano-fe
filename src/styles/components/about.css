@@ -10,7 +10,7 @@
   }
 
   &__content {
-    @apply grid grid-cols-1 md:grid-cols-[3fr_2fr] gap-8 items-center; /* Tekst links, afbeelding rechts */
+    @apply grid grid-cols-1 gap-8 items-center;
   }
 
   &__text {
@@ -19,6 +19,15 @@
 
   &__image {
     @apply flex justify-center items-center;
+  }
+
+  &__image--mobile {
+    display: block;
+    max-width: 150px;
+  }
+
+  &__image--desktop {
+    display: none;
   }
 
   &__img {
@@ -40,6 +49,30 @@
       margin-right: 0.9rem;
       border-radius: 9999px;
       border: 1px solid #ff9d20;
+    }
+  }
+}
+
+/* Desktop layout */
+@media (min-width: 768px) {
+  .about {
+    &__container {
+      display: grid;
+      grid-template-columns: 1fr;
+    }
+    
+    &__image--mobile {
+      display: none;
+    }
+    
+    &__image--desktop {
+      display: block;
+    }
+    
+    &__content {
+      display: grid;
+      grid-template-columns: 3fr 2fr;
+      gap: 8px;
     }
   }
 }

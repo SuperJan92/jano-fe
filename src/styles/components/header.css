@@ -14,36 +14,64 @@ main {
 }
 
 .header {
-  @apply fixed mx-auto md:bg-transparent text-white z-10;
+  @apply fixed mx-auto text-white z-10;
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   z-index: 10;
 
-  /* Mobiele styling (kleiner dan 768px) */
-  @media (max-width: 767px) {
+  @media (max-width: 940px) {
     margin: 10px;
   }
 
-  /* Desktop styling */
-  @media (min-width: 768px) {
+  @media (min-width: 941px) {
     margin: 0;
+    background: transparent;
+  }
+
+  @media (max-height: 500px) {
+    margin: 5px;
   }
 
   &__container {
-    @apply max-h-[72px] p-[11px] md:bg-transparent bg-[#101418] rounded-[35px] overflow-hidden mx-auto flex flex-col max-w-[1400px] gap-2.5 md:flex-row md:justify-between md:items-center duration-200 ease-in-out;
+    @apply max-h-[72px] p-[11px] rounded-[35px] overflow-hidden mx-auto flex flex-col max-w-[1400px] gap-2.5 duration-200 ease-in-out;
+    
+    @media (min-width: 941px) {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    @media (max-width: 940px) {
+      background-color: rgb(16 20 24 / 92%);
+      backdrop-filter: blur(10px);
+    }
+    
     &.is-open {
       @apply max-h-[252px] rounded-[35px];
+      
+      @media (max-height: 500px) {
+        max-height: 300px;
+        padding-top: 15px;
+      }
     }
   }
 
   &__top {
-    @apply md:block md:items-center flex justify-between;
+    @apply flex justify-between items-center;
+    
+    @media (min-width: 941px) {
+      display: block;
+    }
   }
 
   &__logo {
     @apply flex items-center;
+
+    @media (max-height: 500px) {
+      transform: scale(0.85);
+    }
 
     &-text {
       @apply font-goldplay text-custom-orange text-2xl;
@@ -51,18 +79,52 @@ main {
   }
 
   &__nav {
-    @apply flex items-center pt-2 pb-7 md:pb-0 md:pt-0 md:block;
+    @apply flex items-center pt-2 pb-7;
+    
+    @media (min-width: 941px) {
+      padding: 0;
+      display: block;
+    }
+
+    @media (max-width: 940px) {
+      display: none;
+
+      .is-open & {
+        display: flex;
+      }
+    }
+    
+    @media (max-height: 500px) {
+      padding-top: 0.75rem;
+      padding-bottom: 0.5rem;
+    }
   }
 
   &__menu {
-    @apply md:flex block;
+    @apply block w-full;
     counter-reset: item;
+    
+    @media (min-width: 941px) {
+      display: flex;
+    }
 
     &-item {
       @apply list-none;
 
       a {
-        @apply flex items-center md:mb-0 mb-[5px] w-full rounded-[5px] md:rounded-none md:bg-transparent bg-[#181C22] p-[11px] px-[18px] max-w-[unset];
+        @apply flex items-center mb-[5px] w-full rounded-[5px] bg-[#181C22] p-[11px] px-[18px] max-w-[unset];
+        
+        @media (min-width: 941px) {
+          margin-bottom: 0;
+          background: transparent;
+          border-radius: 0;
+        }
+        
+        @media (max-height: 500px) {
+          padding: 7px 14px;
+          margin-bottom: 3px;
+          font-size: 12px;
+        }
 
         &::before {
           content: counter(item, decimal-leading-zero) ". ";
@@ -70,12 +132,25 @@ main {
           @apply text-xs font-bold text-[#ff9d20];
           counter-increment: item;
           display: inline-block;
+          
+          @media (max-height: 500px) {
+            font-size: 10px;
+          }
         }
       }
     }
 
     &-link {
-      @apply text-sm text-custom-gray md:mb-0 mb-6 max-w-[500px] text-left font-opensans opacity-100 hover:text-custom-orange transition;
+      @apply text-sm text-custom-gray mb-6 max-w-[500px] text-left font-opensans opacity-100 hover:text-custom-orange transition;
+      
+      @media (min-width: 941px) {
+        margin-bottom: 0;
+      }
+      
+      @media (max-height: 500px) {
+        font-size: 12px;
+        margin-bottom: 3px;
+      }
     }
 
     li {
@@ -90,7 +165,11 @@ main {
 }
 
 .hamburger {
-  @apply md:hidden block pb-[5px] pt-[11px] mr-1;
+  @apply block pb-[5px] pt-[11px] mr-1;
+  
+  @media (min-width: 941px) {
+    display: none;
+  }
 
   &-inner, 
   &-inner::before, 

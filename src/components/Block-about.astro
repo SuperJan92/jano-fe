@@ -9,6 +9,12 @@ const paragraphs = about_text.split(/\r\n|\n/).filter((paragraph: string) => par
 
 <section id="about" class="about">
     <div class="about__container">
+        {/* Mobiele versie van de afbeelding (alleen zichtbaar op mobiel) */}
+        {about_image && (
+            <div class="about__image about__image--mobile">
+                <img src={about_image_url} alt="About image" class="about__img" />
+            </div>
+        )}
         <h2 class="about__title">{about_title}</h2>
 
         <div class="about__content">
@@ -26,8 +32,9 @@ const paragraphs = about_text.split(/\r\n|\n/).filter((paragraph: string) => par
                     </ul>
                 )}
             </div>
+            {/* Desktop versie van de afbeelding (alleen zichtbaar op desktop) */}
             {about_image && (
-                <div class="about__image">
+                <div class="about__image about__image--desktop">
                     <img src={about_image_url} alt="About image" class="about__img" />
                 </div>
             )}
